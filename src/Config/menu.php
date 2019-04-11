@@ -13,7 +13,7 @@ return [
         'bs3-navmenu' => \Akaunting\Menu\Presenters\Bootstrap3\Nav::class,
 
         // Zurb
-        'zurbmenu' => \Akaunting\Menu\Presenters\Foundation\Zurb::class,
+        'zurb' => \Akaunting\Menu\Presenters\Foundation\Zurb::class,
 
         // Admin
         'adminlte' => \Akaunting\Menu\Presenters\Admin\Adminlte::class,

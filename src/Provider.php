@@ -8,46 +8,41 @@ use Illuminate\Support\ServiceProvider;
 class Provider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
+     * Bootstrap the application services.
      *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
-     * Bootstrap the application events.
+     * @return void
      */
     public function boot()
     {
-        $configPath = __DIR__ . '/Config/menu.php';
-        $viewsPath = __DIR__ . '/Resources/views';
-        
-        $this->mergeConfigFrom($configPath, 'menu');
-        $this->loadViewsFrom($viewsPath, 'menu');
-
         $this->publishes([
-            $configPath => config_path('menu.php'),
+            __DIR__ . '/Config/menu.php' => config_path('menu.php'),
         ], 'menu');
 
         $this->publishes([
-            $viewsPath => base_path('resources/views/vendor/akaunting/menu'),
+            __DIR__ . '/Resources/views' => base_path('resources/views/vendor/akaunting/menu'),
         ], 'views');
-        
-        if (file_exists($file = app_path('Support/menu.php'))) {
-            require $file;
+
+        $this->app->singleton('menu', function ($app) {
+            return new Menu($app['view'], $app['config']);
+        });
+
+        if (file_exists($file = app_path('Support/menus.php'))) {
+            require_once($file);
         }
     }
 
     /**
-     * Register the service provider.
+     * Register the application services.
+     *
+     * @return void
      */
     public function register()
     {
         $this->registerHtmlPackage();
 
-        $this->app->singleton('menu', function ($app) {
-            return new Menu($app['view'], $app['config']);
-        });
+        $this->mergeConfigFrom(__DIR__ . '/Config/menu.php', 'menu');
+
+        $this->loadViewsFrom(__DIR__ . '/Resources/views', 'menu');
     }
 
     /**
@@ -63,15 +58,5 @@ class Provider extends ServiceProvider
         ];
 
         AliasLoader::getInstance($aliases)->register();
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return ['menu'];
     }
 }
