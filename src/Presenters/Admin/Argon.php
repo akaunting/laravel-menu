@@ -34,7 +34,7 @@ class Argon extends Presenter
     public function getMenuWithoutDropdownWrapper($item)
     {
         $html = '<li class="nav-item">';
-        $html .= '  <a class="nav-link' . $this->getActiveState($item) .'" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>';
+        $html .= '  <a class="nav-link' . $this->getActiveState($item) . '" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>';
         $html .=      $item->getIcon();
         $html .= '    <span class="nav-link-text">' . $item->title . '</span>';
         $html .= '  </a>';
@@ -99,11 +99,11 @@ class Argon extends Presenter
     public function getMenuWithDropDownWrapper($item)
     {
         return '<li class="nav-item">
-    <a class="nav-link' . $this->getActiveStateOnChild($item) .'" href="#navbar-' . mb_strtolower($item->title) . '" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-' . mb_strtolower($item->title) . '">
+    <a class="nav-link' . $this->getActiveStateOnChild($item) . '" href="#navbar-' . mb_strtolower($item->title) . '" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-' . mb_strtolower($item->title) . '">
         ' . $item->getIcon() . '
         <span class="nav-link-text">' . $item->title . '</span>
     </a>
-    <div class="collapse' . $this->getShowStateOnChild($item) .'" id="navbar-' . mb_strtolower($item->title) . '">
+    <div class="collapse' . $this->getShowStateOnChild($item) . '" id="navbar-' . mb_strtolower($item->title) . '">
         <ul class="nav nav-sm flex-column">
             ' . $this->getChildMenuItems($item) . '
         </ul>
@@ -122,7 +122,7 @@ class Argon extends Presenter
     public function getMultiLevelDropdownWrapper($item)
     {
         return '<li class="nav-item">
-    <a class="nav-link' . $this->getActiveState($item) .'" href="#navbar-' . mb_strtolower($item->title) . '" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-' . mb_strtolower($item->title) . '">
+    <a class="nav-link' . $this->getActiveState($item) . '" href="#navbar-' . mb_strtolower($item->title) . '" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-' . mb_strtolower($item->title) . '">
         ' . $item->getIcon() . '
         <span class="nav-link-text">' . $item->title . '</span>
     </a>
