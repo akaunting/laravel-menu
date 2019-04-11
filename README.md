@@ -42,7 +42,7 @@ You can change the configuration from `config/menu.php` file
 
 ## Usage
 
-Check out the [wiki](../wiki) about the usage and further documentation.
+Check out the [wiki](../../wiki) about the usage and further documentation.
 
 ## Changelog
 
