@@ -1,12 +1,12 @@
 <?php
 
-namespace Akaunting\Menus\Tests;
+namespace Akaunting\Menu\Tests;
 
+use Akaunting\Menu\Provider;
 use Collective\Html\HtmlServiceProvider;
-use Akaunting\Menus\MenusServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
-abstract class BaseTestCase extends OrchestraTestCase
+abstract class TestCase extends OrchestraTestCase
 {
     public function setUp(): void
     {
@@ -17,7 +17,7 @@ abstract class BaseTestCase extends OrchestraTestCase
     {
         return [
             HtmlServiceProvider::class,
-            MenusServiceProvider::class,
+            Provider::class,
         ];
     }
 

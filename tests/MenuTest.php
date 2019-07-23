@@ -5,14 +5,14 @@ namespace Akaunting\Menu\Tests;
 use Akaunting\Menu\Menu;
 use Akaunting\Menu\MenuBuilder;
 
-class MenuTest extends BaseTestCase
+class MenuTest extends TestCase
 {
     /**
      * @var Menu
      */
     private $menu;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
         
