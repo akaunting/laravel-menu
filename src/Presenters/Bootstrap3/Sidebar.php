@@ -3,6 +3,7 @@
 namespace Akaunting\Menu\Presenters\Bootstrap3;
 
 use Akaunting\Menu\Presenters\Presenter;
+use Illuminate\Support\Str;
 
 class Sidebar extends Presenter
 {
@@ -82,7 +83,7 @@ class Sidebar extends Presenter
      */
     public function getMenuWithDropDownWrapper($item)
     {
-        $id = str_random();
+        $id = Str::random();
 
         return '
 		<li class="' . $this->getActiveStateOnChild($item) . ' panel panel-default" id="dropdown">

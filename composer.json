@@ -1,7 +1,13 @@
 {
    "name": "akaunting/menu",
    "description": "Menu and sidebar management package for Laravel.",
-   "keywords": ["laravel", "menu", "navigation", "sidebar", "bootstrap"],
+   "keywords": [
+       "laravel",
+       "menu",
+       "navigation",
+       "sidebar",
+       "bootstrap"
+   ],
    "license": "MIT",
    "authors": [
         {  
@@ -13,10 +19,10 @@
    ],
    "require": {  
         "php": ">=7.1",
-        "illuminate/config": ">=5.5 <6.0",
-        "illuminate/support": ">=5.5 <6.0",
-        "illuminate/view": ">=5.5 <6.0",
-        "laravelcollective/html": ">=5.5 <6.0"
+        "illuminate/config": ">=5.5",
+        "illuminate/support": ">=5.5",
+        "illuminate/view": ">=5.5",
+        "laravelcollective/html": ">=5.5"
    },
    "require-dev": {  
         "friendsofphp/php-cs-fixer": "^2.10",

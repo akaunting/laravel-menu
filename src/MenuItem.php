@@ -6,6 +6,7 @@ use Closure;
 use Collective\Html\HtmlFacade as HTML;
 use Illuminate\Contracts\Support\Arrayable as ArrayableContract;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str;
 
 /**
  * @property string url
@@ -100,7 +101,7 @@ class MenuItem implements ArrayableContract
      */
     protected static function getRandomName(array $attributes)
     {
-        return substr(md5(array_get($attributes, 'title', str_random(6))), 0, 5);
+        return substr(md5(array_get($attributes, 'title', Str::random(6))), 0, 5);
     }
 
     /**
