@@ -327,6 +327,10 @@ class MenuItem implements ArrayableContract
             return route($this->route[0], $this->route[1]);
         }
 
+        if (empty($this->url)) {
+            return url("/#");
+        }
+
         return url($this->url);
     }
 
