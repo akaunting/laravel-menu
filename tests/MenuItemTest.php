@@ -4,6 +4,7 @@ namespace Akaunting\Menu\Tests;
 
 use Akaunting\Menu\Menu;
 use Akaunting\Menu\MenuItem;
+use Illuminate\Support\Arr;
 
 class MenuItemTest extends TestCase
 {
@@ -15,10 +16,10 @@ class MenuItemTest extends TestCase
     public function setUp() : void
     {
         parent::setUp();
-        
+
         $this->menu = app(Menu::class);
     }
-    
+
     /** @test */
     public function it_can_make_an_empty_menu_item()
     {
@@ -41,7 +42,7 @@ class MenuItemTest extends TestCase
             'active' => false,
             'order' => 1,
         ];
-        
+
         $menuItem = MenuItem::make($properties);
 
         $this->assertEquals($properties, $menuItem->getProperties());
@@ -61,7 +62,7 @@ class MenuItemTest extends TestCase
             'active' => false,
             'order' => 1,
         ];
-        
+
         $menuItem = MenuItem::make($properties);
 
         $this->assertEquals('my.url', $menuItem->url);
@@ -127,7 +128,7 @@ class MenuItemTest extends TestCase
         $children = $menuItem->getChilds()[0]->getChilds();
 
         $this->assertCount(1, $children);
-        $childMenuItem = array_first($children);
+        $childMenuItem = Arr::first($children);
         $this->assertEquals('settings.account', $childMenuItem->route[0]);
         $this->assertEquals(['user_id' => 1], $childMenuItem->route[1]);
     }
@@ -142,7 +143,7 @@ class MenuItemTest extends TestCase
         $children = $menuItem->getChilds()[0]->getChilds();
 
         $this->assertCount(1, $children);
-        $childMenuItem = array_first($children);
+        $childMenuItem = Arr::first($children);
         $this->assertEquals('settings.account', $childMenuItem->route[0]);
         $this->assertEquals(['user_id' => 1], $childMenuItem->route[1]);
         $this->assertSame(1, $childMenuItem->order);
@@ -159,7 +160,7 @@ class MenuItemTest extends TestCase
         $children = $menuItem->getChilds()[0]->getChilds();
 
         $this->assertCount(1, $children);
-        $childMenuItem = array_first($children);
+        $childMenuItem = Arr::first($children);
         $this->assertEquals('settings/account', $childMenuItem->url);
         $this->assertEquals('Account', $childMenuItem->title);
     }
@@ -174,7 +175,7 @@ class MenuItemTest extends TestCase
         $children = $menuItem->getChilds()[0]->getChilds();
 
         $this->assertCount(1, $children);
-        $childMenuItem = array_first($children);
+        $childMenuItem = Arr::first($children);
         $this->assertEquals('settings/account', $childMenuItem->url);
         $this->assertEquals('Account', $childMenuItem->title);
         $this->assertSame(1, $childMenuItem->order);
@@ -233,7 +234,7 @@ class MenuItemTest extends TestCase
             $sub->route('settings.account', 'Account');
         });
         $children = $menuItem->getChilds()[0]->getChilds();
-        $childMenuItem = array_first($children);
+        $childMenuItem = Arr::first($children);
 
         $this->assertEquals('http://localhost/settings/account', $childMenuItem->getUrl());
     }
