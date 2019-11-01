@@ -3,7 +3,7 @@
 namespace Akaunting\Menu;
 
 use Countable;
-use Illuminate\Config\Repository;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\View\Factory as ViewFactory;
 use Illuminate\Support\Arr;
 
@@ -99,7 +99,7 @@ class MenuBuilder implements Countable
     }
 
     /**
-     * Find menu item by given its title.
+     * Find menu item by title.
      *
      * @param  string        $title
      * @param  callable|null $callback
@@ -117,7 +117,7 @@ class MenuBuilder implements Countable
     }
 
     /**
-     * Find menu item by given key and value.
+     * Find menu item by key and value.
      *
      * @param  string $key
      * @param  string $value
@@ -128,6 +128,31 @@ class MenuBuilder implements Countable
         return collect($this->items)->filter(function ($item) use ($key, $value) {
             return $item->{$key} == $value;
         })->first();
+    }
+
+    /**
+     * Remove menu item by title.
+     *
+     * @param  string $title
+     * @return void
+     */
+    public function removeByTitle($title)
+    {
+        $this->removeBy('title', $title);
+    }
+
+    /**
+     * Remove menu item by key and value.
+     *
+     * @param  string $key
+     * @param  string $value
+     * @return void
+     */
+    public function removeBy($key, $value)
+    {
+        $this->items = collect($this->items)->reject(function ($item) use ($key, $value) {
+            return $item->{$key} == $value;
+        })->all();
     }
 
     /**
