@@ -3,6 +3,7 @@
 namespace Akaunting\Menu\Presenters\Admin;
 
 use Akaunting\Menu\Presenters\Presenter;
+use Illuminate\Support\Str;
 
 class Argon extends Presenter
 {
@@ -98,18 +99,20 @@ class Argon extends Presenter
      */
     public function getMenuWithDropDownWrapper($item)
     {
+        $id = Str::slug($item->title);
+
         return '<li class="nav-item">
-    <a class="nav-link' . $this->getActiveStateOnChild($item) . '" href="#navbar-' . mb_strtolower($item->title) . '" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-' . mb_strtolower($item->title) . '">
+    <a class="nav-link' . $this->getActiveStateOnChild($item) . '" href="#navbar-' . $id . '" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-' . $id . '">
         ' . $item->getIcon() . '
         <span class="nav-link-text">' . $item->title . '</span>
     </a>
-    <div class="collapse' . $this->getShowStateOnChild($item) . '" id="navbar-' . mb_strtolower($item->title) . '">
+    <div class="collapse' . $this->getShowStateOnChild($item) . '" id="navbar-' . $id . '">
         <ul class="nav nav-sm flex-column">
             ' . $this->getChildMenuItems($item) . '
         </ul>
     </div>
 </li>'
-        . PHP_EOL;
+            . PHP_EOL;
     }
 
     /**
@@ -121,17 +124,20 @@ class Argon extends Presenter
      */
     public function getMultiLevelDropdownWrapper($item)
     {
+
+        $id = Str::slug($item->title);
+
         return '<li class="nav-item">
-    <a class="nav-link' . $this->getActiveState($item) . '" href="#navbar-' . mb_strtolower($item->title) . '" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-' . mb_strtolower($item->title) . '">
+    <a class="nav-link' . $this->getActiveState($item) . '" href="#navbar-' . $id . '" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-' . $id . '">
         ' . $item->getIcon() . '
         <span class="nav-link-text">' . $item->title . '</span>
     </a>
-    <div class="collapse" id="navbar-' . mb_strtolower($item->title) . '">
+    <div class="collapse" id="navbar-' . $id . '">
         <ul class="nav nav-sm flex-column">
             ' . $this->getChildMenuItems($item) . '
         </ul>
     </div>
 </li>'
-        . PHP_EOL;
+            . PHP_EOL;
     }
 }
