@@ -16,11 +16,8 @@ class Provider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/Config/menu.php' => config_path('menu.php'),
-        ], 'menu');
-
-        $this->publishes([
             __DIR__ . '/Resources/views' => base_path('resources/views/vendor/akaunting/menu'),
-        ], 'views');
+        ], 'menu');
 
         $this->app->singleton('menu', function ($app) {
             return new Menu($app['view'], $app['config']);
