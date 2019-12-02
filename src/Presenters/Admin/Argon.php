@@ -112,7 +112,7 @@ class Argon extends Presenter
         </ul>
     </div>
 </li>'
-            . PHP_EOL;
+        . PHP_EOL;
     }
 
     /**
@@ -124,7 +124,6 @@ class Argon extends Presenter
      */
     public function getMultiLevelDropdownWrapper($item)
     {
-
         $id = Str::slug($item->title);
 
         return '<li class="nav-item">
@@ -138,6 +137,6 @@ class Argon extends Presenter
         </ul>
     </div>
 </li>'
-            . PHP_EOL;
+        . PHP_EOL;
     }
 }
