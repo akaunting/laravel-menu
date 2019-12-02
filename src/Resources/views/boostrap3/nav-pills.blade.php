@@ -1,3 +1,3 @@
 <ul class="nav nav-pills">
-  @include('menu::menu')
+  @include('menu::bootstrap3.menu')
 </ul>

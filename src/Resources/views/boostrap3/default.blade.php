@@ -1,3 +1,3 @@
 <ul class="nav navbar-nav">
-  @include('menu::menu')
+  @include('menu::bootstrap3.menu')
 </ul>

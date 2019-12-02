@@ -1,3 +1,3 @@
 <ul class="nav nav-tabs nav-justified">
-  @include('menu::menu')
+  @include('menu::bootstrap3.menu')
 </ul>
