@@ -17,24 +17,24 @@
             "role": "Developer"
         }
    ],
-   "require": {  
+   "require": {
         "php": ">=7.1",
         "illuminate/config": ">=5.5",
         "illuminate/support": ">=5.5",
         "illuminate/view": ">=5.5",
         "laravelcollective/html": ">=5.5"
    },
-   "require-dev": {  
+   "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.10",
         "mockery/mockery": "~1.0",
         "orchestra/testbench": "3.8.*",
         "phpunit/phpunit": "~7.0"
    },
-   "autoload": {  
-        "psr-4": {  
+   "autoload": {
+        "psr-4": {
             "Akaunting\\Menu\\": "src"
         },
-        "files": [  
+        "files": [
             "src/helpers.php"
         ]
    },
@@ -43,9 +43,9 @@
             "Akaunting\\Menu\\Tests\\": "tests"
         }
     },
-   "extra": {  
-        "laravel": {  
-            "providers": [  
+   "extra": {
+        "laravel": {
+            "providers": [
                 "Akaunting\\Menu\\Provider"
             ],
             "aliases": {
