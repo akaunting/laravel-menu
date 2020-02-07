@@ -152,7 +152,7 @@ class MenuBuilder implements Countable
     {
         $this->items = collect($this->items)->reject(function ($item) use ($key, $value) {
             return $item->{$key} == $value;
-        })->all();
+        })->values()->all();
     }
 
     /**
