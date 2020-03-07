@@ -1,11 +1,11 @@
 # Menu and sidebar management package for Laravel
 
-[![Version](https://poser.pugx.org/akaunting/menu/v/stable.svg)](https://github.com/akaunting/menu/releases)
-![Downloads](https://poser.pugx.org/akaunting/menu/d/total.svg)
-![Build Status](https://travis-ci.com/akaunting/menu.svg)
-[![StyleCI](https://styleci.io/repos/180763610/shield?style=flat&branch=master)](https://styleci.io/repos/180763610)
-[![Quality](https://scrutinizer-ci.com/g/akaunting/menu/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/akaunting/menu)
-[![License](https://poser.pugx.org/akaunting/menu/license.svg)](LICENSE.md)
+[![Version](https://img.shields.io/packagist/v/akaunting/menu?label=release)](https://github.com/akaunting/firewall/releases)
+![Downloads](https://img.shields.io/packagist/dt/akaunting/menu)
+![Tests](https://img.shields.io/github/workflow/status/akaunting/menu/Tests?label=tests)
+[![StyleCI](https://github.styleci.io/repos/180763610/shield?style=flat&branch=master)](https://styleci.io/repos/180763610)
+[![Quality](https://img.shields.io/scrutinizer/quality/g/akaunting/menu?label=quality)](https://scrutinizer-ci.com/g/akaunting/menu)
+[![License](https://img.shields.io/github/license/akaunting/menu)](LICENSE.md)
 
 This package intends to create and manage menus and sidebars for your Laravel app. It ships with ready-to-go presenters and you can create your own ones.
 
