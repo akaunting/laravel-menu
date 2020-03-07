@@ -15,10 +15,10 @@ class MenuTest extends TestCase
     public function setUp() : void
     {
         parent::setUp();
-        
+
         $this->menu = app(Menu::class);
     }
-    
+
     /** @test */
     public function it_generates_an_empty_menu()
     {
