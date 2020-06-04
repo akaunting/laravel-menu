@@ -465,7 +465,7 @@ class MenuItem implements ArrayableContract
             if ($child->inactive()) {
                 continue;
             }
-            
+
             if ($child->hasChilds()) {
                 if ($child->getActiveStateFromChilds()) {
                     return true;
@@ -567,7 +567,7 @@ class MenuItem implements ArrayableContract
      */
     protected function getActiveStateFromRoute()
     {
-        return Request::is(str_replace(url('/') . '/', '', $this->getUrl()));
+        return $this->checkActiveState(str_replace(url('/') . '/', '', $this->getUrl()));
     }
 
     /**
@@ -577,7 +577,21 @@ class MenuItem implements ArrayableContract
      */
     protected function getActiveStateFromUrl()
     {
-        return Request::is($this->url);
+        return $this->checkActiveState($this->url);
+    }
+
+    /**
+     * Check the active state.
+     *
+     * @return bool
+     */
+    protected function checkActiveState($url)
+    {
+        if (empty($url) || ($url == '/')) {
+            return Request::is($url);
+        } else {
+            return Request::is($url, $url . '/*');
+        }
     }
 
     /**
