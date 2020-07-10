@@ -587,7 +587,7 @@ class MenuItem implements ArrayableContract
      */
     protected function checkActiveState($url)
     {
-        if (empty($url) || ($url == '/')) {
+        if (empty($url) || in_array($url, config('menu.home_urls', ['/']))) {
             return Request::is($url);
         } else {
             return Request::is($url, $url . '/*');

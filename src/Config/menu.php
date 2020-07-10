@@ -3,7 +3,6 @@
 return [
 
     'styles' => [
-
         // Boostrap 3
         'bs3-navbar' => \Akaunting\Menu\Presenters\Bootstrap3\Navbar::class,
         'bs3-navbar-right' => \Akaunting\Menu\Presenters\Bootstrap3\NavbarRight::class,
@@ -19,7 +18,10 @@ return [
         'adminlte' => \Akaunting\Menu\Presenters\Admin\Adminlte::class,
         'argon' => \Akaunting\Menu\Presenters\Admin\Argon::class,
         'metronic-horizontal' => \Akaunting\Menu\Presenters\Admin\MetronicHorizontal::class,
-        
+    ],
+
+    'home_urls' => [
+        '/',
     ],
 
     'ordering' => false,
