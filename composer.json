@@ -1,6 +1,6 @@
 {
-   "name": "akaunting/menu",
-   "description": "Menu and sidebar management package for Laravel.",
+   "name": "akaunting/laravel-menu",
+   "description": "Menu and sidebar management package for Laravel",
    "keywords": [
        "laravel",
        "menu",

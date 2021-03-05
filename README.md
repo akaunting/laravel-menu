@@ -1,11 +1,10 @@
 # Menu and sidebar management package for Laravel
 
-[![Version](https://img.shields.io/packagist/v/akaunting/menu?label=release)](https://github.com/akaunting/firewall/releases)
-![Downloads](https://img.shields.io/packagist/dt/akaunting/menu)
-![Tests](https://img.shields.io/github/workflow/status/akaunting/menu/Tests?label=tests)
+![Downloads](https://img.shields.io/packagist/dt/akaunting/laravel-menu)
+![Tests](https://img.shields.io/github/workflow/status/akaunting/laravel-menu/Tests?label=tests)
 [![StyleCI](https://github.styleci.io/repos/180763610/shield?style=flat&branch=master)](https://styleci.io/repos/180763610)
-[![Quality](https://img.shields.io/scrutinizer/quality/g/akaunting/menu?label=quality)](https://scrutinizer-ci.com/g/akaunting/menu)
-[![License](https://img.shields.io/github/license/akaunting/menu)](LICENSE.md)
+[![Quality](https://img.shields.io/scrutinizer/quality/g/akaunting/laravel-menu?label=quality)](https://scrutinizer-ci.com/g/akaunting/laravel-menu)
+[![License](https://img.shields.io/github/license/akaunting/laravel-menu)](LICENSE.md)
 
 This package intends to create and manage menus and sidebars for your Laravel app. It ships with ready-to-go presenters and you can create your own ones.
 
@@ -16,7 +15,7 @@ This package intends to create and manage menus and sidebars for your Laravel ap
 Run the following command:
 
 ```bash
-composer require akaunting/menu
+composer require akaunting/laravel-menu
 ```
 
 ### 2. Register
