@@ -131,7 +131,7 @@ class Argon extends Presenter
         ' . $item->getIcon() . '
         <span class="nav-link-text">' . $item->title . '</span>
     </a>
-    <div class="collapse" id="navbar-' . $id . '">
+    <div class="collapse' . $this->getShowStateOnChild($item) . '" id="navbar-' . $id . '">
         <ul class="nav nav-sm flex-column">
             ' . $this->getChildMenuItems($item) . '
         </ul>
