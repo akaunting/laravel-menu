@@ -18,6 +18,7 @@ return [
         'adminlte' => \Akaunting\Menu\Presenters\Admin\Adminlte::class,
         'argon' => \Akaunting\Menu\Presenters\Admin\Argon::class,
         'metronic-horizontal' => \Akaunting\Menu\Presenters\Admin\MetronicHorizontal::class,
+        'tailwind' => \Akaunting\Menu\Presenters\Admin\Tailwind::class,
     ],
 
     'home_urls' => [
