@@ -4,7 +4,7 @@ namespace Akaunting\Menu\Presenters\Admin;
 
 use Akaunting\Menu\Presenters\Presenter;
 
-class Adminlte extends Presenter
+class Tailwind extends Presenter
 {
     /**
      * {@inheritdoc }.
