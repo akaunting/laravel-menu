@@ -47,7 +47,7 @@ class Tailwind extends Presenter
     /**
      * {@inheritdoc }.
      */
-    public function getActiveState($item, $state = 'active-menu' )
+    public function getActiveState($item, $state = 'active-menu')
     {
         return $item->isActive() ? $state : '';
     }
@@ -102,7 +102,7 @@ class Tailwind extends Presenter
         $id = Str::slug($item->title);
 
         return '
-        <details '. $this->getActiveStateOnChild($item) .'>
+        <details ' . $this->getActiveStateOnChild($item) . '>
             <summary class="block" href="#navbar-' . $id . '">
                 <div class="relative pb-2.5 flex items-center cursor-pointer text-secondary">
                     ' . $this->getIcon($item) . '
@@ -162,7 +162,7 @@ class Tailwind extends Presenter
         if ($item->icon !== null && $item->icon !== '') {
             return '<div class="w-8 h-8 flex colour-secondary items-center justify-center">
                         <ion-icon class="w-5 h-5 text-secondary colour-secondary ' . $item->icon . '" name="' . $item->icon . $state .'"></ion-icon>
-                    </div>'. PHP_EOL;
+                    </div>' . PHP_EOL;
         }
     }
 
@@ -170,7 +170,7 @@ class Tailwind extends Presenter
     {
         $state = $this->chevronState($item);
 
-        return '<ion-icon data-id="cash" name="chevron' . $state . '" class="absolute right-0"></ion-icon>'. PHP_EOL;
+        return '<ion-icon data-id="cash" name="chevron' . $state . '" class="absolute right-0"></ion-icon>' . PHP_EOL;
     }
 
     public function chevronState($item, $state = '-up')
