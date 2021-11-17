@@ -161,7 +161,7 @@ class Tailwind extends Presenter
 
         if ($item->icon !== null && $item->icon !== '') {
             return '<div class="w-8 h-8 flex colour-secondary items-center justify-center">
-                        <ion-icon class="w-5 h-5 text-secondary colour-secondary ' . $item->icon . '" name="' . $item->icon . $state .'"></ion-icon>
+                        <ion-icon class="w-5 h-5 text-secondary colour-secondary ' . $item->icon . '" name="' . $item->icon . $state . '"></ion-icon>
                     </div>' . PHP_EOL;
         }
     }
