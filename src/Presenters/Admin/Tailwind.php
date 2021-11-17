@@ -103,10 +103,12 @@ class Tailwind extends Presenter
 
         return '
         <details '. $this->getActiveStateOnChild($item) .'>
-            <summary class="relative pb-2.5 flex items-center cursor-pointer text-secondary" href="#navbar-' . $id . '">
-                ' . $this->getIcon($item) . '
-                <span class="text-sm font-normal ml-2">' . $item->title . '</span>
-                ' . $this->getChevron($item) . '
+            <summary class="block" href="#navbar-' . $id . '">
+                <div class="relative pb-2.5 flex items-center cursor-pointer text-secondary">
+                    ' . $this->getIcon($item) . '
+                    <span class="text-sm font-normal ml-2">' . $item->title . '</span>
+                    ' . $this->getChevron($item) . '
+                </div>
             </summary>
             <div class="mt-2 ml-8 menu__submenu" id="navbar-' . $id . '">
                 <ul class="relative pb-2.5">
