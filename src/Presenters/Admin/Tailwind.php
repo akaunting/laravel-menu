@@ -35,7 +35,7 @@ class Tailwind extends Presenter
     public function getMenuWithoutDropdownWrapper($item)
     {
         return '<li class="group relative pb-2.5">
-                    <a class="flex items-center text-secondary ' . $this->getActiveState($item) . '" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>
+                    <a class="' . $this->getClass($item) . $this->getActiveState($item) . '" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>
                         ' . $this->getIcon($item) . '
                         <span class="text-sm ml-2 hover:font-bold">' . $item->title . '</span>
                         <span class="bg-secondary absolute h-5 -right-5 rounded-tl-lg rounded-bl-lg opacity-0 group-hover:opacity-100 transition-all" style="width: 5px;"></span>
@@ -131,7 +131,7 @@ class Tailwind extends Presenter
         $id = Str::slug($item->title);
 
         return '<li class="group relative pb-2.5">
-                    <a class="flex items-center text-secondary' . $this->getActiveState($item) . '" href="#navbar-' . $id . '" aria-controls="navbar-' . $id . '">
+                    <a class="' . $this->getClass($item) . $this->getActiveState($item) . '" href="#navbar-' . $id . '" aria-controls="navbar-' . $id . '">
                         ' . $this->getIcon($item) . '
                         <span class="text-sm ml-2 hover:font-bold">' . $item->title . '</span>
                         <span class="bg-secondary absolute h-5 -right-5 rounded-tl-lg rounded-bl-lg opacity-0 group-hover:opacity-100 transition-all" style="width: 5px;"></span>
@@ -147,34 +147,49 @@ class Tailwind extends Presenter
 
     public function iconState($item, $state = '')
     {
-        return $item->isActive() ? $state : '-outline';
+        return $item->isActive() ? $state : '-outlined';
     }
 
     public function iconChildState($item, $state = '')
     {
-        return $item->hasActiveOnChild() ? $state : '-outline';
+        return $item->hasActiveOnChild() ? $state : '-outlined';
+    }
+
+    public function getClass($item)
+    {
+        $class = 'flex items-center text-secondary';
+
+        $attributes = $item->attributes;
+
+        if (!empty($attributes['class'])) {
+            $class .= ' ' . $attributes['class'];
+        }
+
+        return $class;
     }
 
     public function getIcon($item)
     {
+        if (empty($item->icon)) {
+            return '';
+        }
+
         $state = empty($item->getChilds()) ? $this->iconState($item) : $this->iconChildState($item);
 
-        if ($item->icon !== null && $item->icon !== '') {
-            return '<div class="w-8 h-8 flex colour-secondary items-center justify-center">
-                        <ion-icon class="w-5 h-5 text-secondary colour-secondary ' . $item->icon . '" name="' . $item->icon . $state . '"></ion-icon>
-                    </div>' . PHP_EOL;
-        }
+        return '<div class="w-8 h-8 flex items-center justify-center">
+                    <span class="material-icons' . $state . ' text-secondary text-2xl">' . $item->icon . '</span>
+                </div>' . PHP_EOL;
     }
 
     public function getChevron($item)
     {
         $state = $this->chevronState($item);
 
-        return '<ion-icon data-id="cash" name="chevron' . $state . '" class="absolute right-0"></ion-icon>' . PHP_EOL;
+        return '<span class="material-icons text-secondary absolute right-0 transform transition-all">expand' . $state . '</span>' . PHP_EOL;
     }
 
-    public function chevronState($item, $state = '-up')
+    public function chevronState($item, $state = '_less')
     {
-        return $item->hasActiveOnChild() ? $state : '-down';
+        return $item->hasActiveOnChild() ? $state : '_more';
     }
 }

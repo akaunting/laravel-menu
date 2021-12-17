@@ -34,16 +34,17 @@ class MenuItem implements ArrayableContract
      *
      * @var array
      */
-    protected $childs = array();
+    protected $childs = [];
 
     /**
      * The fillable attribute.
      *
      * @var array
      */
-    protected $fillable = array(
+    protected $fillable = [
         'url',
         'route',
+        'fragment',
         'title',
         'name',
         'icon',
@@ -52,7 +53,7 @@ class MenuItem implements ArrayableContract
         'active',
         'order',
         'hideWhen',
-    );
+    ];
 
     /**
      * The hideWhen callback.
@@ -66,7 +67,7 @@ class MenuItem implements ArrayableContract
      *
      * @param array $properties
      */
-    public function __construct($properties = array())
+    public function __construct($properties = [])
     {
         $this->properties = $properties;
         $this->fill($properties);
@@ -152,12 +153,15 @@ class MenuItem implements ArrayableContract
      *
      * @param $title
      * @param callable $callback
+     * @param int $order
+     * @param array $attributes
+     * @param string|null $fragment
      *
      * @return $this
      */
-    public function dropdown($title, \Closure $callback, $order = 0, array $attributes = array())
+    public function dropdown($title, \Closure $callback, $order = 0, array $attributes = [], $fragment = null)
     {
-        $properties = compact('title', 'order', 'attributes');
+        $properties = compact('title', 'order', 'attributes', 'fragment');
 
         if (func_num_args() === 3) {
             $arguments = func_get_args();
@@ -184,10 +188,11 @@ class MenuItem implements ArrayableContract
      * @param $title
      * @param array $parameters
      * @param array $attributes
+     * @param string|null $fragment
      *
      * @return MenuItem
      */
-    public function route($route, $title, $parameters = array(), $order = 0, $attributes = array())
+    public function route($route, $title, $parameters = [], $order = 0, $attributes = [], $fragment = null)
     {
         if (func_num_args() === 4) {
             $arguments = func_get_args();
@@ -199,9 +204,9 @@ class MenuItem implements ArrayableContract
             ]);
         }
 
-        $route = array($route, $parameters);
+        $route = [$route, $parameters];
 
-        return $this->add(compact('route', 'title', 'order', 'attributes'));
+        return $this->add(compact('route', 'title', 'order', 'attributes', 'fragment'));
     }
 
     /**
@@ -210,10 +215,11 @@ class MenuItem implements ArrayableContract
      * @param $url
      * @param $title
      * @param array $attributes
+     * @param string|null $fragment
      *
      * @return MenuItem
      */
-    public function url($url, $title, $order = 0, $attributes = array())
+    public function url($url, $title, $order = 0, $attributes = [], $fragment = null)
     {
         if (func_num_args() === 3) {
             $arguments = func_get_args();
@@ -225,7 +231,7 @@ class MenuItem implements ArrayableContract
             ]);
         }
 
-        return $this->add(compact('url', 'title', 'order', 'attributes'));
+        return $this->add(compact('url', 'title', 'order', 'attributes', 'fragment'));
     }
 
     /**
@@ -253,7 +259,7 @@ class MenuItem implements ArrayableContract
      */
     public function addDivider($order = null)
     {
-        $item = static::make(array('name' => 'divider', 'order' => $order));
+        $item = static::make(['name' => 'divider', 'order' => $order]);
 
         $this->childs[] = $item;
 
@@ -281,10 +287,10 @@ class MenuItem implements ArrayableContract
      */
     public function addHeader($title)
     {
-        $item = static::make(array(
+        $item = static::make([
             'name' => 'header',
             'title' => $title,
-        ));
+        ]);
 
         $this->childs[] = $item;
 
@@ -325,7 +331,9 @@ class MenuItem implements ArrayableContract
     public function getUrl()
     {
         if ($this->route !== null) {
-            return route($this->route[0], $this->route[1]);
+            $url = route($this->route[0], $this->route[1]);
+
+            return !is_null($this->fragment) ? $url . '#' . $this->fragment : $url;
         }
 
         if (empty($this->url)) {
@@ -383,7 +391,7 @@ class MenuItem implements ArrayableContract
     {
         $attributes = $this->attributes ? $this->attributes : [];
 
-        Arr::forget($attributes, ['active', 'icon']);
+        Arr::forget($attributes, ['active', 'icon', 'search_keywords']);
 
         return HTML::attributes($attributes);
     }
@@ -567,7 +575,10 @@ class MenuItem implements ArrayableContract
      */
     protected function getActiveStateFromRoute()
     {
-        return $this->checkActiveState(str_replace(url('/') . '/', '', $this->getUrl()));
+        $url = str_replace(url('/') . '/', '', $this->getUrl());
+        $url = str_replace('#' . $this->fragment, '', $url);
+
+        return $this->checkActiveState($url);
     }
 
     /**
@@ -577,7 +588,9 @@ class MenuItem implements ArrayableContract
      */
     protected function getActiveStateFromUrl()
     {
-        return $this->checkActiveState($this->url);
+        $url = str_replace('#' . $this->fragment, '', $this->url);
+
+        return $this->checkActiveState($url);
     }
 
     /**

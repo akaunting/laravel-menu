@@ -45,6 +45,13 @@ class MenuBuilder implements Countable
     protected $prefixUrl;
 
     /**
+     * The URL fragment to add to all URLs.
+     *
+     * @var string|null
+     */
+    protected $fragmentUrl;
+
+    /**
      * The name of view presenter.
      *
      * @var string
@@ -198,6 +205,20 @@ class MenuBuilder implements Countable
     }
 
     /**
+     * Set Prefix URL.
+     *
+     * @param string $fragmentUrl
+     *
+     * @return $this
+     */
+    public function setFragmentUrl($fragmentUrl)
+    {
+        $this->fragmentUrl = $fragmentUrl;
+
+        return $this;
+    }
+
+    /**
      * Set styles.
      *
      * @param array $styles
@@ -315,7 +336,7 @@ class MenuBuilder implements Countable
                 $key[$k] = $this->resolve($v);
             }
         } elseif (is_string($key)) {
-            $matches = array();
+            $matches = [];
 
             preg_match_all('/{[\s]*?([^\s]+)[\s]*?}/i', $key, $matches, PREG_SET_ORDER);
 
@@ -354,7 +375,7 @@ class MenuBuilder implements Countable
      *
      * @return \Akaunting\Menu\MenuItem
      */
-    public function add(array $attributes = array())
+    public function add(array $attributes = [])
     {
         $item = MenuItem::make($attributes);
 
@@ -369,12 +390,15 @@ class MenuBuilder implements Countable
      * @param $title
      * @param callable $callback
      * @param array    $attributes
+     * @param string|null $fragment
      *
      * @return $this
      */
-    public function dropdown($title, \Closure $callback, $order = null, array $attributes = array())
+    public function dropdown($title, \Closure $callback, $order = null, array $attributes = [], $fragment = null)
     {
-        $properties = compact('title', 'order', 'attributes');
+        $fragment = $fragment ?: $this->fragmentUrl;
+
+        $properties = compact('title', 'order', 'attributes', 'fragment');
 
         if (func_num_args() == 3) {
             $arguments = func_get_args();
@@ -401,10 +425,11 @@ class MenuBuilder implements Countable
      * @param $title
      * @param array $parameters
      * @param array $attributes
+     * @param string|null $fragment
      *
      * @return static
      */
-    public function route($route, $title, $parameters = array(), $order = null, $attributes = array())
+    public function route($route, $title, $parameters = [], $order = null, $attributes = [], $fragment = null)
     {
         if (func_num_args() == 4) {
             $arguments = func_get_args();
@@ -416,11 +441,11 @@ class MenuBuilder implements Countable
             ]);
         }
 
-        $route = array($route, $parameters);
+        $route = [$route, $parameters];
 
-        $item = MenuItem::make(
-            compact('route', 'title', 'parameters', 'attributes', 'order')
-        );
+        $fragment = $fragment ?: $this->fragmentUrl;
+
+        $item = MenuItem::make(compact('route', 'title', 'parameters', 'attributes', 'order', 'fragment'));
 
         $this->items[] = $item;
 
@@ -436,9 +461,10 @@ class MenuBuilder implements Countable
      */
     protected function formatUrl($url)
     {
-        $uri = !is_null($this->prefixUrl) ? $this->prefixUrl . $url : $url;
+        $url = !is_null($this->prefixUrl) ? $this->prefixUrl . $url : $url;
+        $url = !is_null($this->fragmentUrl) ? $url . '#' . $this->fragmentUrl : $url;
 
-        return $uri == '/' ? '/' : ltrim(rtrim($uri, '/'), '/');
+        return $url == '/' ? '/' : ltrim(rtrim($url, '/'), '/');
     }
 
     /**
@@ -447,10 +473,11 @@ class MenuBuilder implements Countable
      * @param $url
      * @param $title
      * @param array $attributes
+     * @param string|null $fragment
      *
      * @return static
      */
-    public function url($url, $title, $order = 0, $attributes = array())
+    public function url($url, $title, $order = 0, $attributes = [], $fragment = null)
     {
         if (func_num_args() == 3) {
             $arguments = func_get_args();
@@ -464,7 +491,9 @@ class MenuBuilder implements Countable
 
         $url = $this->formatUrl($url);
 
-        $item = MenuItem::make(compact('url', 'title', 'order', 'attributes'));
+        $fragment = $fragment ?: $this->fragmentUrl;
+
+        $item = MenuItem::make(compact('url', 'title', 'order', 'attributes', 'fragment'));
 
         $this->items[] = $item;
 
@@ -479,7 +508,10 @@ class MenuBuilder implements Countable
      */
     public function addDivider($order = null)
     {
-        $this->items[] = new MenuItem(array('name' => 'divider', 'order' => $order));
+        $this->items[] = new MenuItem([
+            'name' => 'divider',
+            'order' => $order,
+        ]);
 
         return $this;
     }
@@ -491,11 +523,11 @@ class MenuBuilder implements Countable
      */
     public function addHeader($title, $order = null)
     {
-        $this->items[] = new MenuItem(array(
+        $this->items[] = new MenuItem([
             'name' => 'header',
             'title' => $title,
             'order' => $order,
-        ));
+        ]);
 
         return $this;
     }
@@ -537,7 +569,7 @@ class MenuBuilder implements Countable
      */
     public function destroy()
     {
-        $this->items = array();
+        $this->items = [];
 
         return $this;
     }
