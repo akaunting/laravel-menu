@@ -35,7 +35,7 @@ class Tailwind extends Presenter
     public function getMenuWithoutDropdownWrapper($item)
     {
         return '<li class="group relative pb-2.5">
-                    <a class="' . $this->getClass($item) . $this->getActiveState($item) . '" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>
+                    <a class="' . $this->getClass($item) . ' ' . $this->getActiveState($item) . '" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>
                         ' . $this->getIcon($item) . '
                         <span class="text-sm ml-2 hover:font-bold">' . $item->title . '</span>
                         <span class="bg-secondary absolute h-5 -right-5 rounded-tl-lg rounded-bl-lg opacity-0 group-hover:opacity-100 transition-all" style="width: 5px;"></span>
