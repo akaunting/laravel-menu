@@ -130,7 +130,7 @@ class Tailwind extends Presenter
     {
         $id = Str::slug($item->title);
 
-        return '<li class="group relative pb-2.5">
+        return '<li class="relative pb-2.5">
                     <a class="' . $this->getClass($item) . $this->getActiveState($item) . '" href="#navbar-' . $id . '" aria-controls="navbar-' . $id . '">
                         ' . $this->getIcon($item) . '
                         <span class="text-sm ml-2 hover:font-bold">' . $item->title . '</span>
