@@ -2,6 +2,7 @@
 
 namespace Akaunting\Menu;
 
+use Akaunting\Menu\MenuBuilder;
 use Closure;
 use Countable;
 use Illuminate\Contracts\Config\Repository;
@@ -9,27 +10,12 @@ use Illuminate\View\Factory;
 
 class Menu implements Countable
 {
-    /**
-     * The menu collections.
-     *
-     * @var array
-     */
-    protected $menu = [];
-    /**
-     * @var Repository
-     */
-    private $config;
-    /**
-     * @var Factory
-     */
-    private $views;
+    protected array $menu = [];
 
-    /**
-     * The constructor.
-     *
-     * @param Factory    $views
-     * @param Repository $config
-     */
+    protected Repository $config;
+
+    protected Factory $views;
+
     public function __construct(Factory $views, Repository $config)
     {
         $this->views = $views;
@@ -38,26 +24,16 @@ class Menu implements Countable
 
     /**
      * Make new menu.
-     *
-     * @param string $name
-     * @param Closure $callback
-     *
-     * @return \Akaunting\Menu\MenuBuilder
      */
-    public function make($name, \Closure $callback)
+    public function make(string $name, Closure $callback): mixed
     {
         return $this->create($name, $callback);
     }
 
     /**
      * Create new menu.
-     *
-     * @param string   $name
-     * @param Callable $resolver
-     *
-     * @return \Akaunting\Menu\MenuBuilder
      */
-    public function create($name, Closure $resolver)
+    public function create(string $name, Closure $resolver): mixed
     {
         $builder = new MenuBuilder($name, $this->config);
 
@@ -70,36 +46,24 @@ class Menu implements Countable
 
     /**
      * Check if the menu exists.
-     *
-     * @param string $name
-     *
-     * @return bool
      */
-    public function has($name)
+    public function has(string $name): bool
     {
         return array_key_exists($name, $this->menu);
     }
 
     /**
      * Get instance of the given menu if exists.
-     *
-     * @param string $name
-     *
-     * @return string|null
      */
-    public function instance($name)
+    public function instance(string $name): ?MenuBuilder
     {
         return $this->has($name) ? $this->menu[$name] : null;
     }
 
     /**
      * Modify a specific menu.
-     *
-     * @param  string   $name
-     * @param  Closure  $callback
-     * @return void
      */
-    public function modify($name, Closure $callback)
+    public function modify(string $name, Closure $callback): void
     {
         $menu = collect($this->menu)->filter(function ($menu) use ($name) {
             return $menu->getName() == $name;
@@ -110,13 +74,8 @@ class Menu implements Countable
 
     /**
      * Render the menu tag by given name.
-     *
-     * @param string $name
-     * @param string $presenter
-     *
-     * @return string|null
      */
-    public function get($name, $presenter = null, $bindings = [])
+    public function get(string $name, ?string $presenter = null, array $bindings = []): ?string
     {
         return $this->has($name) ?
             $this->menu[$name]->setBindings($bindings)->render($presenter) : null;
@@ -124,41 +83,30 @@ class Menu implements Countable
 
     /**
      * Render the menu tag by given name.
-     *
-     * @param $name
-     * @param null $presenter
-     *
-     * @return string
      */
-    public function render($name, $presenter = null, $bindings = [])
+    public function render(string $name, ?string $presenter = null, array $bindings = []): ?string
     {
         return $this->get($name, $presenter, $bindings);
     }
 
     /**
      * Get a stylesheet for enable multilevel menu.
-     *
-     * @return mixed
      */
-    public function style()
+    public function style(): mixed
     {
         return $this->views->make('menu::bootstrap3.style')->render();
     }
 
     /**
      * Get all menus.
-     *
-     * @return array
      */
-    public function all()
+    public function all(): array
     {
         return $this->menu;
     }
 
     /**
      * Count menus.
-     *
-     * @return int
      */
     public function count(): int
     {
@@ -168,7 +116,7 @@ class Menu implements Countable
     /**
      * Empty the current menus.
      */
-    public function destroy()
+    public function destroy(): void
     {
         $this->menu = [];
     }

@@ -18,17 +18,17 @@
         }
    ],
    "require": {
-        "php": ">=7.3",
-        "illuminate/config": ">=5.5",
-        "illuminate/support": ">=5.5",
-        "illuminate/view": ">=5.5",
-        "laravelcollective/html": ">=5.5"
+        "php": "^8.0",
+        "illuminate/config": "^9.0",
+        "illuminate/support": "^9.0",
+        "illuminate/view": "^9.0",
+        "laravelcollective/html": "^6.3"
    },
    "require-dev": {
-        "friendsofphp/php-cs-fixer": ">=3.4",
-        "mockery/mockery": ">=1.4",
-        "orchestra/testbench": ">=6.0",
-        "phpunit/phpunit": ">=9.0"
+        "friendsofphp/php-cs-fixer": "^3.12",
+        "mockery/mockery": "^1.5",
+        "orchestra/testbench": "^7.11",
+        "phpunit/phpunit": "^9.5"
    },
    "autoload": {
         "psr-4": {

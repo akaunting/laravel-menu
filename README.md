@@ -3,7 +3,6 @@
 ![Downloads](https://img.shields.io/packagist/dt/akaunting/laravel-menu)
 ![Tests](https://img.shields.io/github/workflow/status/akaunting/laravel-menu/Tests?label=tests)
 [![StyleCI](https://github.styleci.io/repos/180763610/shield?style=flat&branch=master)](https://styleci.io/repos/180763610)
-[![Quality](https://img.shields.io/scrutinizer/quality/g/akaunting/laravel-menu?label=quality)](https://scrutinizer-ci.com/g/akaunting/laravel-menu)
 [![License](https://img.shields.io/github/license/akaunting/laravel-menu)](LICENSE.md)
 
 This package intends to create and manage menus and sidebars for your Laravel app. It ships with ready-to-go presenters and you can create your own ones.
@@ -50,6 +49,10 @@ Please see [Releases](../../releases) for more information what has changed rece
 ## Contributing
 
 Pull requests are more than welcome. You must follow the PSR coding standards.
+
+## Security
+
+Please review [our security policy](https://github.com/akaunting/laravel-menu/security/policy) on how to report security vulnerabilities.
 
 ## Credits
 

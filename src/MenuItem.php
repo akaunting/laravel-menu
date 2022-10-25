@@ -576,7 +576,7 @@ class MenuItem implements ArrayableContract
     protected function getActiveStateFromRoute()
     {
         $url = str_replace(url('/') . '/', '', $this->getUrl());
-        $url = str_replace('#' . $this->fragment, '', $url);
+        $url = str_replace('#' . (string) $this->fragment, '', $url);
 
         return $this->checkActiveState($url);
     }
@@ -588,7 +588,7 @@ class MenuItem implements ArrayableContract
      */
     protected function getActiveStateFromUrl()
     {
-        $url = str_replace('#' . $this->fragment, '', $this->url);
+        $url = str_replace('#' . (string) $this->fragment, '', (string) $this->url);
 
         return $this->checkActiveState($url);
     }
