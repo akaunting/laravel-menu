@@ -19,15 +19,15 @@
    ],
    "require": {
         "php": "^8.0",
-        "illuminate/config": "^9.0",
-        "illuminate/support": "^9.0",
-        "illuminate/view": "^9.0",
+        "illuminate/config": "^9.0|^10.0",
+        "illuminate/support": "^9.0|^10.0",
+        "illuminate/view": "^9.0|^10.0",
         "laravelcollective/html": "^6.3"
    },
    "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.12",
         "mockery/mockery": "^1.5",
-        "orchestra/testbench": "^7.11",
+        "orchestra/testbench": "^7.4|^8.0",
         "phpunit/phpunit": "^9.5"
    },
    "autoload": {
@@ -52,5 +52,7 @@
                 "Menu": "Akaunting\\Menu\\Facade"
             }
         }
-   }
+   },
+   "minimum-stability": "dev",
+   "prefer-stable": true
 }

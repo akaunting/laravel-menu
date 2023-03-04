@@ -10,12 +10,17 @@ jobs:
 
     strategy:
       matrix:
-        php: ['8.0', '8.1']
-        laravel: [9.*]
+        php: ['8.0', '8.1', '8.2']
+        laravel: [9.*, 10.*]
         stability: [prefer-lowest, prefer-stable]
         include:
           - laravel: 9.*
             testbench: 7.*
+          - laravel: 10.*
+            testbench: 8.*
+        exclude:
+          - laravel: 10.*
+            php: 8.0
 
     steps:
       - name: Checkout code
@@ -32,5 +37,6 @@ jobs:
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
       - name: Execute tests
         run: vendor/bin/phpunit
