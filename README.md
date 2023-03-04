@@ -1,7 +1,7 @@
 # Menu and sidebar management package for Laravel
 
 ![Downloads](https://img.shields.io/packagist/dt/akaunting/laravel-menu)
-![Tests](https://img.shields.io/github/workflow/status/akaunting/laravel-menu/Tests?label=tests)
+![Tests](https://img.shields.io/github/actions/workflow/status/akaunting/laravel-menu/tests.yml?label=tests)
 [![StyleCI](https://github.styleci.io/repos/180763610/shield?style=flat&branch=master)](https://styleci.io/repos/180763610)
 [![License](https://img.shields.io/github/license/akaunting/laravel-menu)](LICENSE.md)
 
