@@ -14,7 +14,7 @@ class Tailwind extends Presenter
     {
         return PHP_EOL . '<div class="navbar-inner">
             <!-- Collapse -->
-            <div class="collapse" id="sidenav-collapse-main">
+            <div id="sidenav-collapse-main">
                 <!-- Nav items -->
                 <ul class="flex flex-col justify-center">' . PHP_EOL;
     }
@@ -34,11 +34,11 @@ class Tailwind extends Presenter
      */
     public function getMenuWithoutDropdownWrapper($item)
     {
-        return '<li class="group relative pb-2.5">
-                    <a class="' . $this->getClass($item) . ' ' . $this->getActiveState($item) . '" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>
+        return '<li class="group relative pb-2.5 text-sm">
+                    <a class="' . $this->getClass($item) . ''. $this->getActiveState($item) . '" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>
                         ' . $this->getIcon($item) . '
-                        <span class="text-sm ml-2 hover:font-bold">' . $item->title . '</span>
-                        <span class="bg-purple absolute h-5 -right-5 rounded-tl-lg rounded-bl-lg opacity-0 group-hover:opacity-100 transition-all" style="width: 5px;"></span>
+                        ' . $item->title . '
+                        <span class="bg-purple absolute h-5 -right-5 rounded-tl-lg rounded-bl-lg opacity-0 group-hover:opacity-100 transition-all pointer-events-none" style="width: 5px;"></span>
                     </a>
                 </li>'
                 . PHP_EOL;
@@ -104,9 +104,9 @@ class Tailwind extends Presenter
         return '
         <details ' . $this->getActiveStateOnChild($item) . '>
             <summary class="block" href="#navbar-' . $id . '">
-                <div class="relative pb-2.5 flex items-center cursor-pointer text-purple">
+                <div class="relative pb-2.5 flex items-center cursor-pointer text-purple text-sm">
                     ' . $this->getIcon($item) . '
-                    <span class="text-sm font-normal ml-2">' . $item->title . '</span>
+                    ' . $item->title . '
                     ' . $this->getChevron($item) . '
                 </div>
             </summary>
@@ -130,18 +130,21 @@ class Tailwind extends Presenter
     {
         $id = Str::slug($item->title);
 
-        return '<li class="relative pb-2.5">
-                    <a class="' . $this->getClass($item) . $this->getActiveState($item) . '" href="#navbar-' . $id . '" aria-controls="navbar-' . $id . '">
-                        ' . $this->getIcon($item) . '
-                        <span class="text-sm ml-2 hover:font-bold">' . $item->title . '</span>
-                        <span class="bg-purple absolute h-5 -right-5 rounded-tl-lg rounded-bl-lg opacity-0 group-hover:opacity-100 transition-all" style="width: 5px;"></span>
-                    </a>
+        return '<details class="relative" ' . $this->getActiveStateOnChild($item) . '>
+                    <summary class="' . $this->getClass($item). '" href="#navbar-' . $id . '" aria-controls="navbar-' . $id . '">
+                        <div class="pb-2.5 flex items-center cursor-pointer text-purple text-sm '. $this->getActiveState($item) .'">
+                            ' . $this->getIcon($item) . '
+                            ' . $item->title . '
+                            <span class="bg-purple absolute h-5 -right-5 rounded-tl-lg rounded-bl-lg opacity-0 group-hover:opacity-100 transition-all pointer-events-none" style="width: 5px;"></span>
+                            ' . $this->getChevron($item) . '
+                        </div>
+                    </summary>
                     <div class="mt-2 ml-8 menu__submenu' . $this->getShowStateOnChild($item) . '" id="navbar-' . $id . '">
                         <ul class="relative pb-2.5">
                             ' . $this->getChildMenuItems($item) . '
                         </ul>
                     </div>
-                </li>'
+                </details>'
         . PHP_EOL;
     }
 
@@ -185,7 +188,7 @@ class Tailwind extends Presenter
     {
         $state = $this->chevronState($item);
 
-        return '<span class="material-icons text-purple absolute right-0 transform transition-all">expand' . $state . '</span>' . PHP_EOL;
+        return '<span class="material-icons text-purple absolute ltr:-right-1.5 rtl:-left-1.5 transform transition-all">expand' . $state . '</span>' . PHP_EOL;
     }
 
     public function chevronState($item, $state = '_less')
