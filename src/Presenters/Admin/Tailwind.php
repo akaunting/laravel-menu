@@ -132,7 +132,7 @@ class Tailwind extends Presenter
 
         return '<details class="relative" ' . $this->getActiveStateOnChild($item) . '>
                     <summary class="' . $this->getClass($item) . '" href="#navbar-' . $id . '" aria-controls="navbar-' . $id . '">
-                        <div class="pb-2.5 flex items-center cursor-pointer text-purple text-sm ' . $this->getActiveState($item) .'">
+                        <div class="pb-2.5 flex items-center cursor-pointer text-purple text-sm ' . $this->getActiveState($item) . '">
                             ' . $this->getIcon($item) . '
                             ' . $item->title . '
                             <span class="bg-purple absolute h-5 -right-5 rounded-tl-lg rounded-bl-lg opacity-0 group-hover:opacity-100 transition-all pointer-events-none" style="width: 5px;"></span>
