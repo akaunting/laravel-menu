@@ -35,7 +35,7 @@ class Tailwind extends Presenter
     public function getMenuWithoutDropdownWrapper($item)
     {
         return '<li class="group relative pb-2.5 text-sm">
-                    <a class="' . $this->getClass($item) . ''. $this->getActiveState($item) . '" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>
+                    <a class="' . $this->getClass($item) . '' . $this->getActiveState($item) . '" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>
                         ' . $this->getIcon($item) . '
                         ' . $item->title . '
                         <span class="bg-purple absolute h-5 -right-5 rounded-tl-lg rounded-bl-lg opacity-0 group-hover:opacity-100 transition-all pointer-events-none" style="width: 5px;"></span>
@@ -131,7 +131,7 @@ class Tailwind extends Presenter
         $id = Str::slug($item->title);
 
         return '<details class="relative" ' . $this->getActiveStateOnChild($item) . '>
-                    <summary class="' . $this->getClass($item). '" href="#navbar-' . $id . '" aria-controls="navbar-' . $id . '">
+                    <summary class="' . $this->getClass($item) . '" href="#navbar-' . $id . '" aria-controls="navbar-' . $id . '">
                         <div class="pb-2.5 flex items-center cursor-pointer text-purple text-sm '. $this->getActiveState($item) .'">
                             ' . $this->getIcon($item) . '
                             ' . $item->title . '

@@ -12,7 +12,6 @@ use Akaunting\Menu\Presenters\Presenter;
 
 class MetronicHorizontal extends Presenter
 {
-
     /**
      * {@inheritdoc }
      */
