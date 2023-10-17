@@ -4,23 +4,12 @@ namespace Akaunting\Menu;
 
 use Closure;
 use Collective\Html\HtmlFacade as HTML;
-use Illuminate\Contracts\Support\Arrayable as ArrayableContract;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
-/**
- * @property string url
- * @property string route
- * @property string title
- * @property string name
- * @property string icon
- * @property int parent
- * @property array attributes
- * @property bool active
- * @property int order
- */
-class MenuItem implements ArrayableContract
+class MenuItem implements Arrayable
 {
     /**
      * Array properties.
@@ -54,6 +43,56 @@ class MenuItem implements ArrayableContract
         'order',
         'hideWhen',
     ];
+
+    /**
+     * @var string
+     */
+    protected $url;
+
+    /**
+     * @var string
+     */
+    protected $route;
+
+    /**
+     * @var string
+     */
+    protected $fragment;
+
+    /**
+     * @var string
+     */
+    protected $title;
+
+    /**
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * @var string
+     */
+    protected $icon;
+
+    /**
+     * @var int
+     */
+    protected $parent;
+
+    /**
+     * @var array
+     */
+    protected $attributes;
+
+    /**
+     * @var bool
+     */
+    protected $active;
+
+    /**
+     * @var int
+     */
+    protected $order;
 
     /**
      * The hideWhen callback.
