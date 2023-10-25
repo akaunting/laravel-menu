@@ -47,59 +47,59 @@ class MenuItem implements Arrayable
     /**
      * @var string
      */
-    protected $url;
+    public $url;
 
     /**
      * @var string
      */
-    protected $route;
+    public $route;
 
     /**
      * @var string
      */
-    protected $fragment;
+    public $fragment;
 
     /**
      * @var string
      */
-    protected $title;
+    public $title;
 
     /**
      * @var string
      */
-    protected $name;
+    public $name;
 
     /**
      * @var string
      */
-    protected $icon;
+    public $icon;
 
     /**
      * @var int
      */
-    protected $parent;
+    public $parent;
 
     /**
      * @var array
      */
-    protected $attributes;
+    public $attributes;
 
     /**
      * @var bool
      */
-    protected $active;
+    public $active;
 
     /**
      * @var int
      */
-    protected $order;
+    public $order;
 
     /**
      * The hideWhen callback.
      *
      * @var Closure
      */
-    protected $hideWhen;
+    public $hideWhen;
 
     /**
      * Constructor.
